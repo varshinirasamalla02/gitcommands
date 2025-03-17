@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Events in AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="keyboardApp" ng-controller="keyboardController">
+    <h3>Press a key inside the input box:</h3>
+    <p>{{ message }}</p>
+    <input type="text" 
+           ng-keydown="onKeyDown($event)" 
+           ng-keyup="onKeyUp($event)" 
+           ng-keypress="onKeyPress($event)" 
+           placeholder="Type something here..." />
+    
+    <script>
+        var app = angular.module("keyboardApp", []);
+        app.controller("keyboardController", function($scope) {
+            $scope.message = "No key pressed yet!";
+
+            $scope.onKeyDown = function(event) {
+                $scope.message = "Key Down: " + event.key;
+            };
+
+            $scope.onKeyUp = function(event) {
+                $scope.message = "Key Up: " + event.key;
+            };
+
+            $scope.onKeyPress = function(event) {
+                $scope.message = "Key Press: " + event.key;
+            };
+        });
+    </script>
+</body>
+</html>
